@@ -11,6 +11,9 @@ the [ChatOps for non-DevOps people Working Group 2018/01](https://github.com/fit
 ```bash
 
 ## Added docker-compose.yml and web, env & app folders from https://github.com/altsalt/civicrm-docker.git
+## Removing last line: clean all resources (DO NOT RUN `docker-compose down --volumes --rmi all` ON PRODUCTION)
+## docker-compose down --volumes --rmi all 
+## See branch `altsalt`
 
 ```
 

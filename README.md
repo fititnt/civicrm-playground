@@ -5,31 +5,52 @@ the [ChatOps for non-DevOps people Working Group 2018/01](https://github.com/fit
 
 - Website: <https://civicrm.org/>
 - GitHub: <https://github.com/civicrm/civicrm-core>
+- Containers: <https://github.com/michaelmcandrew/civicrm-buildkit-docker>
+
+![3-contact.png](screenshots/3-contact.png)
 
 ## Logbook 
 
+
 ```bash
 
-## Added docker-compose.yml and web, env & app folders from https://github.com/altsalt/civicrm-docker.git
-## Removing last line: clean all resources (DO NOT RUN `docker-compose down --volumes --rmi all` ON PRODUCTION)
-## docker-compose down --volumes --rmi all 
-## See branch `altsalt`
+## Add all files (except the README.md from https://github.com/michaelmcandrew/civicrm-buildkit-docker)
+
+docker-compose up -d
+
+# Wait... 10min+
+
+docker-compose exec -u buildkit civicrm civibuild create dmaster --url http://localhost:8080
+
+# Wait... 10min+
+
+## Open http://localhost:8080 on your browser
+
+
+### Stop and clean all resources (DO NOT RUN `docker-compose down --volumes --rmi all` ON PRODUCTION)
+docker-compose down --volumes --rmi all
 
 ```
 
+See [fulllogs.sh](fulllogs.sh).
 
-# Acknowledgements
+## Screenshots
 
-<!--
-NOTE: this Acknowledgements is the same from https://github.com/altsalt/civicrm-docker
--->
+![0-docker.png](screenshots/0-docker.png)
+![1-login-screen.png](screenshots/1-login-screen.png)
+![2-dashboard.png](screenshots/2-dashboard.png)
+![3-contact.png](screenshots/3-contact.png)
 
-* Docker for providing official packages for [Drupal](https://hub.docker.com/_/drupal/), [MariaDB](https://hub.docker.com/_/mariadb/), [nginx](https://hub.docker.com/_/nginx/), and all others that went to building these.
-* djcf for their [civicrm-docker](https://github.com/djcf/civicrm-docker) project and related questions floating around the Internet.
-* Josh Lockhart for their [blog post](http://www.newmediacampaigns.com/blog/docker-for-php-developers) which maps a three container Docker image.
-* William Mortada for their  [explaination](https://civicrm.stackexchange.com/questions/4829/is-it-easy-to-upgrade-civicrm-using-drush) of the update procedure via Drush.
-* the Drupal community for [documentation](https://www.drupal.org/node/244924) about hardening an install.
-* md5 for their [gist](https://gist.github.com/md5/d9206eacb5a0ff5d6be0) demonstrating nginx+php-fpm.
-* wsargent for the [Docker Cheat Sheet](https://github.com/wsargent/docker-cheat-sheet).
-* and the many giants who have come before me, this world would not be possible without you!
-* and Altsalt for https://github.com/altsalt/civicrm-docker
+
+## Enviroment
+
+```
+## Ubuntu 16.04.4 LTS
+# Requires Need docker and docker-compose. Used:
+
+$ docker -v
+Docker version 17.12.1-ce, build 7390fc6
+
+$ docker-compose -v
+docker-compose version 1.18.0, build 8dd22a9
+```
